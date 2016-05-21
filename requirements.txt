@@ -1,0 +1,6 @@
+boto3
+Flask
+requests
+requests_ntlm
+apscheduler
+xmltodict
