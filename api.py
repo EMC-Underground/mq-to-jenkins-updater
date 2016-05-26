@@ -1,5 +1,5 @@
 import methods
-from Flask import flask
+from flask import Flask
 
 # Globals
 app = Flask(__name__)
