@@ -26,17 +26,17 @@ def get_message_from_SQS():
         print('Someone created a branch or tag!')
       elif eventType == "delete":
         print('Someone deleted a branch or tag!')
-      elif eventType == "deployment":
-      elif eventType == "deployment_status":
-      elif eventType == "fork":
-      elif eventType == "gollum":
-      elif eventType == "issue_comment":
-      elif eventType == "member":
-      elif eventType == "membership":
-      elif eventType == "page_build":
-      elif eventType == "public":
-      elif eventType == "pull_request_review_comment":
-      elif eventType == "pull_request":
+      # elif eventType == "deployment":
+      # elif eventType == "deployment_status":
+      # elif eventType == "fork":
+      # elif eventType == "gollum":
+      # elif eventType == "issue_comment":
+      # elif eventType == "member":
+      # elif eventType == "membership":
+      # elif eventType == "page_build":
+      # elif eventType == "public":
+      # elif eventType == "pull_request_review_comment":
+      # elif eventType == "pull_request":
       elif eventType == "push":
         print('Someone has pushed to a repo!')
         event = message.body
