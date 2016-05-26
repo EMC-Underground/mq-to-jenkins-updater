@@ -41,7 +41,7 @@ def get_message_from_SQS():
         print('Someone has pushed to a repo!')
         event = message.body
         repoName = event['repository']['full_name']
-        check_for_jenkins_job(repoName):
+        check_for_jenkins_job(repoName)
 
       elif eventType == "repository":
       elif eventType == "release":
