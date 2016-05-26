@@ -2,6 +2,9 @@ import boto3
 import xmltodict
 import json
 
+# Assumptions:
+# - All messages will have a X-GitHub-Event attribute
+
 def get_message_from_SQS():
   # Get the service resource
   sqs = boto3.resource('sqs')
@@ -12,16 +15,38 @@ def get_message_from_SQS():
   # Process messages by printing out body and optional author name
   for message in queue.receive_messages(MessageAttributeNames=['Source']):
     # Get the custom author message attribute if it was set
-    eventSource = ''
+    eventType = ''
     if message.message_attributes is not None:
-      eventSource = message.message_attributes.get('Source').get('StringValue')
-      if eventSource:
-        if eventSource == "Github"
-          print('We got something from Github!')
-          event = message.body
-          repoName = event['repository']['full_name']
-          if check_for_jenkins_job(repoName):
-            a
+      eventType = message.message_attributes.get('X-GitHub-Event').get('StringValue')
+      if eventType == "commit_comment":
+        print('Someone commented on a commit!')
+      elif eventType == "create":
+        print('Someone created a branch or tag!')
+      elif eventType == "delete":
+        print('Someone deleted a branch or tag!')
+      elif eventType == "deployment":
+      elif eventType == "deployment_status":
+      elif eventType == "fork":
+      elif eventType == "gollum":
+      elif eventType == "issue_comment":
+      elif eventType == "member":
+      elif eventType == "membership":
+      elif eventType == "page_build":
+      elif eventType == "public":
+      elif eventType == "pull_request_review_comment":
+      elif eventType == "pull_request":
+      elif eventType == "push":
+        print('Someone has opened an issue!')
+        event = message.body
+        repoName = event['repository']['full_name']
+        if check_for_jenkins_job(repoName):
+          a
+      elif eventType == "repository":
+      elif eventType == "release":
+      elif eventType == "status":
+      elif eventType == "team_add":
+      elif eventType ==   "watch":
+      elif eventType == "issues":
     # Let the queue know that the message is processed
     message.delete()
 
