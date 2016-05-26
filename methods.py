@@ -15,12 +15,12 @@ def get_message_from_SQS():
   queue = sqs.get_queue_by_name(QueueName='emc-underground-github-events')
 
   # Process messages by printing out body and optional author name
-  for message in queue.receive_messages(MessageAttributeNames=['Source']):
+  for message in queue.receive_messages(MessageAttributeNames=['GithubEvent']):
     print("We got a message")
     # Get the custom author message attribute if it was set
     eventType = ""
     if message.message_attributes is not None:
-      eventType = message.message_attributes.get('X-GitHub-Event').get('StringValue')
+      eventType = message.message_attributes.get('GithubEvent').get('StringValue')
       print("The message was from github and it is a {0} event".format(eventType))
       if eventType == "commit_comment":
         print('Someone commented on a commit!')
