@@ -1,4 +1,4 @@
-import methods.py
+import methods
 from Flask import flask
 
 # Globals
