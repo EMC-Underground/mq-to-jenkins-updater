@@ -4,7 +4,9 @@ import json
 
 # Assumptions:
 # - All messages will have a X-GitHub-Event attribute
-
+# Resources:
+# - https://developer.github.com/v3/activity/events/types/
+# - http://boto3.readthedocs.io/en/latest/guide/resources.html
 def get_message_from_SQS():
   # Get the service resource
   sqs = boto3.resource('sqs')
@@ -36,11 +38,11 @@ def get_message_from_SQS():
       elif eventType == "pull_request_review_comment":
       elif eventType == "pull_request":
       elif eventType == "push":
-        print('Someone has opened an issue!')
+        print('Someone has pushed to a repo!')
         event = message.body
         repoName = event['repository']['full_name']
-        if check_for_jenkins_job(repoName):
-          a
+        check_for_jenkins_job(repoName):
+
       elif eventType == "repository":
       elif eventType == "release":
       elif eventType == "status":
@@ -68,4 +70,6 @@ def check_for_jenkins_job(repoName):
     config = xmltodict.parse(jobRequest.text)
     githubURL = config['project']['properties']['com.coravy.hudson.plugins.github.GithubProjectProperty']['projectUrl']
     if repoName in githubURL:
-      return job['url']
+      # Make the build!
+      buildRequest = requests.post('{0}build'.format(job['url']))
+      return
