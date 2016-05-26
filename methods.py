@@ -73,3 +73,11 @@ def check_for_jenkins_job(repoName):
       # Make the build!
       buildRequest = requests.post('{0}build'.format(job['url']))
       return
+
+# listener to give visibility into job completetion
+def error_listener(event):
+  if event.exception:
+    print("The job failed...{0}".format(event.exception))
+    print("{0}".format(event.traceback))
+  else:
+    print("The job worked!")
