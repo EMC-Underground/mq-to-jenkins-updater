@@ -1,6 +1,7 @@
 import boto3
 import xmltodict
 import json
+import requests
 
 # Assumptions:
 # - All messages will have a X-GitHub-Event attribute
@@ -22,6 +23,7 @@ def get_message_from_SQS():
     if message.message_attributes is not None:
       eventType = message.message_attributes.get('GithubEvent').get('StringValue')
       print("The message was from github and it is a {0} event".format(eventType))
+      event = json.loads(message.body)
       if eventType == "commit_comment":
         print('Someone commented on a commit!')
       elif eventType == "create":
@@ -41,7 +43,6 @@ def get_message_from_SQS():
       # elif eventType == "pull_request":
       elif eventType == "push":
         print('Someone has pushed to a repo!')
-        event = message.body
         repoName = event['repository']['full_name']
         check_for_jenkins_job(repoName)
 
