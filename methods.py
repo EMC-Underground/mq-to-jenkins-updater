@@ -2,6 +2,7 @@ import boto3
 import xmltodict
 import json
 import requests
+import os
 
 # Assumptions:
 # - All messages will have a X-GitHub-Event attribute
