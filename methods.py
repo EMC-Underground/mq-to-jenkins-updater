@@ -43,12 +43,12 @@ def get_message_from_SQS():
         repoName = event['repository']['full_name']
         check_for_jenkins_job(repoName)
 
-      elif eventType == "repository":
-      elif eventType == "release":
-      elif eventType == "status":
-      elif eventType == "team_add":
-      elif eventType ==   "watch":
-      elif eventType == "issues":
+      # elif eventType == "repository":
+      # elif eventType == "release":
+      # elif eventType == "status":
+      # elif eventType == "team_add":
+      # elif eventType ==   "watch":
+      # elif eventType == "issues":
     # Let the queue know that the message is processed
     message.delete()
 
