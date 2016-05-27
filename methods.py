@@ -76,7 +76,7 @@ def check_for_jenkins_job(repoName):
     if repoName in githubURL:
       # Make the build!
       buildRequest = requests.post('{0}build'.format(job['url']))
-      if buildRequest.status_code == requests.codes.ok:
+      if buildRequest.status_code == requests.codes.created:
         requests.post('{0}hubot/jenkins'.format(os.getenv('HUBOT_URL')),data = {'message':'{0} has been updated in GitHub! Rebuilding...'.format(job['name'])})
       else:
         requests.post('{0}hubot/jenkins'.format(os.getenv('HUBOT_URL')),data = {'message':'{0} has been updated in GitHub! But the build request failed...'.format(job['name'])})
